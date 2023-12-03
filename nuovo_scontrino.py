@@ -66,7 +66,6 @@ def nuova_riga(i):
         with col2:
             if st.button("**:orange[SALVA E STAMPA]**", use_container_width=True):
                 salva_stampa_scontrino()
-			
 
 
 def cancella_riga(i):
@@ -98,7 +97,7 @@ def salva_stampa_scontrino():
             corretto = False
             break
         if "capo" in k:
-	    capo.append(v)
+            capo.append(v)
             ID_capo.append(da_capo_a_ID(v))
         if "quantità" in k:
             quantità.append(v)
@@ -107,7 +106,7 @@ def salva_stampa_scontrino():
 
     if corretto:
         S.nuovo_scontrino(ID_cliente, ID_capo, data, quantità, commento)
-	stampa(cliente, data, quantità, capo, commento)
+        stampa(cliente, data, quantità, capo, commento)
     else:
         st.error("Hai dimenticato di compilare qualche campo")
 
