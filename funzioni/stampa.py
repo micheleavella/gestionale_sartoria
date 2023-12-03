@@ -1,5 +1,5 @@
 from openpyxl import load_workbook
-
+import os
 
 def stampa(cliente, data, quantità, capo, commento):
     workbook = load_workbook(filename="dati/template.xlsx")
