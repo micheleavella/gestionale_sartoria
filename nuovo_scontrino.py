@@ -5,6 +5,7 @@ import streamlit as st
 
 from funzioni.clienti import clienti
 from funzioni.scontrini import scontrini
+from funzioni.stampa import stampa
 
 
 def nuova_riga(i):
@@ -65,6 +66,7 @@ def nuova_riga(i):
         with col2:
             if st.button("**:orange[SALVA E STAMPA]**", use_container_width=True):
                 salva_stampa_scontrino()
+			
 
 
 def cancella_riga(i):
@@ -87,6 +89,7 @@ def salva_stampa_scontrino():
     data = st.session_state["ns_data"]
 
     capo = []
+    ID_capo = []
     quantità = []
     commento = []
 
@@ -95,14 +98,16 @@ def salva_stampa_scontrino():
             corretto = False
             break
         if "capo" in k:
-            capo.append(da_capo_a_ID(v))
+	    capo.append(v)
+            ID_capo.append(da_capo_a_ID(v))
         if "quantità" in k:
             quantità.append(v)
         if "commento" in k:
             commento.append(v)
 
     if corretto:
-        S.nuovo_scontrino(ID_cliente, capo, data, quantità, commento)
+        S.nuovo_scontrino(ID_cliente, ID_capo, data, quantità, commento)
+	stampa(cliente, data, quantità, capo, commento)
     else:
         st.error("Hai dimenticato di compilare qualche campo")
 

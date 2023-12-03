@@ -10,7 +10,13 @@ def stampa(cliente, data, quantità, capo, commento):
 
     for i in range(len(capo)):
         sheet["A" + str(7 + i)].value = quantità[i]
-        sheet["B" + str(7 + i)].value = capo[i]
-        sheet["C" + str(7 + i)].value = commento[i]
+        sheet["B" + str(7 + i)].value = capo[i].upper()
+        sheet["C" + str(7 + i)].value = commento[i].upper()
+        
+    for i in range(len(capo), 100):
+        sheet["A" + str(7 + i)].value = None
+        sheet["B" + str(7 + i)].value = None
+        sheet["C" + str(7 + i)].value = None
 
     workbook.save("dati/out.xlsx")
+    os.startfile("dati\\out.xlsx", "print")
