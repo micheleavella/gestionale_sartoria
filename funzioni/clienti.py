@@ -22,19 +22,24 @@ class clienti:
         self.df.to_csv(self.path, index=0)
 
     def nuovo_cliente(self, cognome, nome, cellulare):
-        id_new = self.df["ID_cliente"].max() + 1
-        nuovo = pd.DataFrame(
-            [
-                {
-                    "ID_cliente": id_new,
-                    "cognome": cognome,
-                    "nome": nome,
-                    "cellulare": cellulare,
-                }
-            ]
-        )
-        self.df = pd.concat([self.df, nuovo], ignore_index=1)
-        self.salva()
+        d = self.df[(self.df.cognome == cognome) & (self.df.nome == nome)]
+        if len(d) == 0:
+            id_new = self.df["ID_cliente"].max() + 1
+            nuovo = pd.DataFrame(
+                [
+                    {
+                        "ID_cliente": id_new,
+                        "cognome": cognome,
+                        "nome": nome,
+                        "cellulare": cellulare,
+                    }
+                ]
+            )
+            self.df = pd.concat([self.df, nuovo], ignore_index=1)
+            self.salva()
+            return True
+        else:
+            return False
 
     def da_nome_a_ID(self, cognomenome):
         df = self.df.copy()
