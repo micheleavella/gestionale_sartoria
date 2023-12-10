@@ -3,6 +3,7 @@ import streamlit as st
 from pagine.home import pagina_home
 from pagine.nuovo_cliente import pagina_nuovo_cliente
 from pagine.nuovo_scontrino import pagina_nuovo_scontrino
+from pagine.pagina_consegna import pagina_consegna
 
 
 def inizializza(S):
@@ -55,3 +56,6 @@ if st.session_state["pagina"] == "nuovo_scontrino":
             st.session_state["nc_bottone"] = False
             st.rerun()
         st.session_state["pagina_nuovo_scontrino"].mostra()
+
+if st.session_state["pagina"] == "consegna":
+    pagina_consegna()
