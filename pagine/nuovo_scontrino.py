@@ -109,7 +109,7 @@ class pagina_nuovo_scontrino:
             self.scontrini.nuovo_scontrino(
                 ID_cliente, ID_capo, data, quantita, commento
             )
-            stampa(cliente, data, quantita, capo, commento)
+            stampa(cliente, data, quantita, capo, commento, data_consegna)
             self.S["pagina"] = "home"
             self.resetta()
         else:
