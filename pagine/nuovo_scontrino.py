@@ -74,7 +74,8 @@ class pagina_nuovo_scontrino:
         corretto = True
         cliente = self.S["ns_cliente"]
         ID_cliente = C.da_nome_a_ID(cliente)
-        data = self.S["ns_data"]
+        data_consegna = self.S["ns_data"]
+        data = date.today()
 
         capo = []
         ID_capo = []
